@@ -26,9 +26,17 @@
 
         a:visited {color:darkgrey;} /* 已访问链接 */
 
-        a:hover {color:darkcyan;} /* 鼠标移动到链接上 */
+        .aa:link {color:black;} /* 未访问链接*/
 
-        a:active {color:darkcyan;} /* 鼠标点击时 */
+        .aa:visited {color:black;} /* 已访问链接 */
+
+        a:hover {color: red;} /* 鼠标移动到链接上 */
+
+        a:active {color:red;} /* 鼠标点击时 */
+
+        .aa:hover {color: red;} /* 鼠标移动到链接上 */
+
+        .aa:active {color:red;} /* 鼠标点击时 */
     </style>
 
     <!-- 右键屏蔽 -->
@@ -140,10 +148,12 @@
 </head>
 <body>
 
-    <h1 style="text-align: center;">Welcome to AI Conlang<br><span style="font-size: 10%; color: darkgrey; text-align: center; width: 100%;">交流Q群：<a href="https://jq.qq.com/?_wv=1027&k=IRe6lsfc" target="_blank">577415436</a></span></h1>
+    <h1 style="text-align: center;">Welcome to AI Conlang</h1>
     <div class="bl"><div class="tp" id="get"></div></div>
     <button style="margin-left: 40%; margin-top: 10px; width: 20%;" onclick="change()"><spam style="font-size: 150%;">拉取请求</spam></button>
     <script>
+
+        // document.getElementById("get").innerHTML = "<p style='color:darkgrey'>交流Q群：<a href='https://jq.qq.com/?_wv=1027&k=IRe6lsfc' target='_blank'>577415436</a></p>";
 
         function randomNumber(min, max) {
             return Math.random() * (max - min + 1) + min;
@@ -465,8 +475,8 @@
             output += "<span style='padding: 60px;''></span>";
             output += "<li>版本号：  " + order + "</li>";
             output += "<span style='padding: 60px;''></span>";
-            // output += "<li class='tp'>IP地址：  " + IP() + "</li>";
-            // output += "<br/>";
+            output += "<li>交流群：  <a class='aa' href='https://jq.qq.com/?_wv=1027&k=IRe6lsfc' target='_blank'>577415436</a></li>";
+            output += "<br/>";
             output += "<li>" + nowTime() +  "</li><ul>";
 
             return output;
