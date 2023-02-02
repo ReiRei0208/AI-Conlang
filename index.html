@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Conlang</title>
+
+    <style>
+        .tp {
+            font-size: 150%;
+            margin:0 auto;
+            margin-top: 20px;
+            width:900px;
+        }
+        .bl {
+            margin:0 auto;
+            width:1000px;
+            border: 6px solid darkgrey;
+            border-radius: 15px;
+        }
+    </style>
+
+    <!-- 右键屏蔽 -->
+    <script type="text/javascript">
+        //屏蔽右键菜单
+        document.oncontextmenu = function (event){
+            if(window.event){
+                event = window.event;
+            }try{
+                var the = event.srcElement;
+                if (!((the.tagName == "INPUT" && the.type.toLowerCase() == "text") || the.tagName == "TEXTAREA")){
+                    return false;
+                }
+                return true;
+            }catch (e){
+                return false; 
+            } 
+        }
+        
+        //屏蔽粘贴
+        document.onpaste = function (event){
+            if(window.event){
+                event = window.event;
+            }try{
+                var the = event.srcElement;
+                if (!((the.tagName == "INPUT" && the.type.toLowerCase() == "text") || the.tagName == "TEXTAREA")){
+                    return false;
+                }
+                return true;
+            }catch (e){
+                return false;
+            }
+        }
+        
+        // 屏蔽复制
+        document.oncopy = function (event){
+            if(window.event){
+                event = window.event;
+            }try{
+                var the = event.srcElement;
+                if(!((the.tagName == "INPUT" && the.type.toLowerCase() == "text") || the.tagName == "TEXTAREA")){
+                    return false;
+                }
+                return true;
+            }catch (e){
+                return false;
+            }
+        }
+        
+        // 屏蔽剪切
+        document.oncut = function (event){
+            if(window.event){
+                event = window.event;
+            }try{
+                var the = event.srcElement;
+                if(!((the.tagName == "INPUT" && the.type.toLowerCase() == "text") || the.tagName == "TEXTAREA")){
+                    return false;
+                }
+                return true;
+            }catch (e){
+                return false;
+            }
+        }
+
+        //屏蔽保存
+        window.addEventListener("keydown", function (e) {
+            if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
+                e.preventDefault();
+            }
+        }, false);
+        
+        // 屏蔽选中
+        document.onselectstart = function (event){
+            if(window.event){
+                event = window.event;
+            }try{
+                var the = event.srcElement;
+                if (!((the.tagName == "INPUT" && the.type.toLowerCase() == "text") || the.tagName == "TEXTAREA")){
+                    return false;
+                }
+                return true;
+            } catch (e) {
+                return false;
+            }
+        }
+
+        // 屏蔽F12
+        document.onkeydown = document.onkeyup = document.onkeypress = function(event) {
+            var e = event || window.event || arguments.callee.caller.arguments[0];
+            if (e && e.keyCode == 123) {
+                e.returnValue = false;
+                return (false);
+            }
+        }
+
+        // 防浏览器内嵌控制台
+        function resize(){
+            var threshold = 200;
+            var widthThreshold = window.outerWidth - window.innerWidth > threshold;
+            var heightThreshold = window.outerHeight - window.innerHeight > threshold;
+            if(widthThreshold || heightThreshold){
+               location.replace("./Warn.html",'_blank')
+            }
+        }
+        window.addEventListener('resize', resize);
+        resize()
+
+    </script>
+</head>
+<body>
+
+    <h1 style="text-align: center;">Welcome to AI Conlang</h1>
+    <div class="bl"><div class="tp" id="get"></div></div>
+    <button style="margin-left: 40%; margin-top: 10px; width: 20%;" onclick="change()"><spam style="font-size: 150%;">拉取请求</spam></button>
+
+    <script>
+
+        function randomNumber(min, max) {
+            return Math.random() * (max - min + 1) + min;
+            }
+        function randomlimit(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+            }
+        function setScale(num, scale) {
+                return Math.floor(num * scale);
+            }
+        function roundNumber(num) {
+            return Math.floor(num * 100) / 100;
+            }
+        function deleteDuplicate(arr) {
+            let newArr = [];
+            arr.forEach(item => {
+                if(newArr.indexOf(item) === -1) {
+                newArr.push(item);
+                }
+            });
+            return newArr;
+            }
+
+        function all() {
+            
+            // 定义特定函数
+            function bubbleSort(a) {
+                let len = a.length;
+                for (let i = 0; i < len; i++) {
+                    for (let j = 0; j < len - i - 1; j++) {
+                        if (a[j] > a[j + 1]) {
+                            let temp = a[j];
+                            a[j] = a[j + 1];
+                            a[j + 1] = temp;
+                        }
+                    }
+                }
+                return a;
+            }
+            function bubbleSortLong(list) {
+            let length = list.length;
+            for (let i = 0; i < length; i++) {
+                for (let j = 0; j < length - 1; j++) {
+                if (list[j].length > list[j + 1].length) {
+                    let temp = list[j];
+                    list[j] = list[j + 1];
+                    list[j + 1] = temp;
+                }
+                }
+            }
+            return list;
+            }
+            function bubbleSortLists(a,b) {
+                let len = a.length;
+                for (let i = 0; i < len; i++) {
+                    for (let j = 0; j < len - i - 1; j++) {
+                        if (a[j] > a[j + 1]) {
+                            let temp = a[j];
+                            a[j] = a[j + 1];
+                            a[j + 1] = temp;
+
+                            temp = b[j];
+                            b[j] = b[j + 1];
+                            b[j + 1] = temp;
+                        }
+                    }
+                }
+                return b;
+            }
+            function removeDuplicateChar(str) {
+                let oldStr = str;
+                let newStr = '';
+                for (let i = 0; i < oldStr.length; i++) {
+                    if (oldStr[i] !== oldStr[i + 1] || (vowel.indexOf(oldStr[i]) == -1 && pinyin.indexOf(oldStr[i]) == -1) || (vowel.indexOf(oldStr[i]) != -1 && vowel.indexOf(oldStr[i + 1]) != -1) || (pinyin.indexOf(oldStr[i]) != -1 && pinyin.indexOf(oldStr[i + 1]) != -1)) {
+                        newStr += oldStr[i];
+                    }
+                }
+                return newStr;
+            }
+            function nowTime(){
+                var current = new Date();//实例化Date对象
+                var nowYear = current.getFullYear();//获取当前的年份
+                var nowMonth = current.getMonth() + 1;//默认显示的是0-11月，比我们正常的月份少一个月，所以要+1
+                var nowdates = current.getDate();//获取日期
+                var nowmin = current.getMinutes();//获取日期
+                var nowhors = current.getHours();//获取日期
+                var nowse = current.getSeconds();//获取日期
+                //而且getDate（）返回的是 1 、 2这样的数字，我们想要获取星期几的话，可以自己先写好数组存放
+                //然后通过数组的索引来获取星期几
+                return ('当前时间： ' + nowYear + '/' + nowMonth + '/' + nowdates + ' _ ' + nowhors + ':' + nowmin + ':' + nowse);
+                //接着就是组装成我们想要的格式了
+            }
+            function makeaWord(a) {
+                let aword = "";
+                for (let i = 0; i < a; i++) {
+                    if (Math.random() < 0.8) {
+                        if (Math.random() < 0.2) {
+                        aword = aword + vowel2[randomlimit(0,vowel2.length-1)];
+                        }
+                        aword = aword + pinyin2[randomlimit(0,pinyin2.length-1)];
+                        if (Math.random() < 0.3 && complement2 != "") {
+                            aword = aword + complement2[randomlimit(0,complement2.length-1)];
+                        }
+                        aword = aword + vowel2[randomlimit(0,vowel2.length-1)];
+                        if (Math.random() < 0.4 && consonant2 != "") {
+                            aword = aword + consonant2[randomlimit(0,consonant2.length-1)];
+                        }
+                        if (Math.random() < 0.3) {
+                            aword = aword + pinyin2[randomlimit(0,pinyin2.length-1)];
+                        }
+                    }else{
+                        aword = aword + vowel2[randomlimit(0,vowel2.length-1)];
+                        if (Math.random() < 0.75 && consonant2 != "") {
+                            aword = aword + consonant2[randomlimit(0,consonant2.length-1)];
+                        }
+                        if (Math.random() < 0.9) {
+                            aword = aword + pinyin2[randomlimit(0,pinyin2.length-1)];
+                        }
+                    }
+                }
+                return removeDuplicateChar(aword)
+            }
+
+            // ——————————————————
+
+            let times = 0;
+
+            // ——————————————————
+
+            // 限值
+            const order = "1.6.53.ExpVer";
+            const ran = randomlimit(14,34);
+            const limit = setScale(ran,roundNumber(randomNumber(15,45) / 100));
+            
+            // 元音
+            const vowel1 = ["a","e","i","o","u"];
+            const vowel2 = [];
+            while (vowel2.length < limit) {
+                times ++;
+                if (vowel1.length == vowel2.length) {
+                    break;
+                }
+                let randomIndex = Math.floor(Math.random() * vowel1.length);
+                if (vowel2.indexOf(vowel1[randomIndex]) === -1) {
+                    vowel2.push(vowel1[randomIndex]);
+                }
+            }
+            const vowel = bubbleSort(vowel2);
+
+            // 铺音
+            const pinyin1 = ["b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","y","z"];
+            const pinyin2 = [];
+            while (pinyin2.length < ran - limit) {
+                times ++;
+                if (pinyin1.length == pinyin2.length) {
+                    break;
+                }
+                let randomIndex = Math.floor(Math.random() * pinyin1.length);
+                if (pinyin2.indexOf(pinyin1[randomIndex]) === -1) {
+                    pinyin2.push(pinyin1[randomIndex]);
+                }
+            }
+            const pinyin = bubbleSort(pinyin2);
+
+            // 辅音
+            const rand1 = randomlimit(-1,4)
+            const consonant1 = ["n","m"];
+            const consonant2 = [];
+            for (let i = 0; i < rand1; i++) {
+                times ++;
+                let randomIndex = Math.floor(Math.random() * consonant1.length);
+                if (consonant2.indexOf(consonant1[randomIndex]) === -1) {
+                    consonant2.push(consonant1[randomIndex]);
+                }
+            }
+            const consonant = bubbleSort(consonant2);
+
+            // 补音
+            const rand2 = randomlimit(-2,4)
+            const complement1 = ["r","l"];
+            const complement2 = [];
+            for (let i = 0; i < rand2; i++) {
+                times ++;
+                let randomIndex = Math.floor(Math.random() * complement1.length);
+                if (complement2.indexOf(complement1[randomIndex]) === -1) {
+                    complement2.push(complement1[randomIndex]);
+                }
+            }
+            const complement = bubbleSort(complement2);
+
+            // 重复
+            // 重元音
+            const samev = randomlimit(0,1);
+            // 重拼音
+            const samep = randomlimit(0,1);
+            // 双元音
+            const twov = randomlimit(0,1);
+            // 双拼音
+            const twop = randomlimit(0,1);
+
+            // ——————————————————
+
+            // 字母表
+            const letter1 = [];
+            for (let i = 0; i < vowel2.length; i++) {
+                times ++;
+                letter1.push(vowel2[i]);
+            }
+            for (let i = 0; i < pinyin2.length; i++) {
+                times ++;
+                letter1.push(pinyin2[i]);
+            }
+            for (let i = 0; i < consonant2.length; i++) {
+                times ++;
+                letter1.push(consonant2[i]);
+            }
+            for (let i = 0; i < complement2.length; i++) {
+                times ++;
+                letter1.push(complement2[i]);
+            }
+            letter2 = bubbleSort(deleteDuplicate(letter1))
+
+            // ——————————————————
+
+            // 构字法
+            let word = "";
+            word += "(" + vowel[0] + ")";
+            word += "(" + pinyin[0] + ")";
+            if (samep == 0) {
+                word += "(" + pinyin[0] + ")";
+            }else{
+                if (twop == 0) {
+                word += "(" + pinyin[0] + "*)";
+                }
+            }
+            if (complement.length != 0) {
+                word += "(" + complement[0] + ")";
+            }
+            word += vowel[0];
+            if (samev == 0) {
+                word += "(" + vowel[0] + ")";
+            }else{
+                if (twov == 0) {
+                word += "(" + vowel[0] + "*)";
+                }
+            }
+            if (consonant.length != 0) {
+                word += "(" + consonant[0] + ")";
+            }
+            word += "(" + pinyin[0] + ")";
+
+            // ——————————————————
+
+            // 中文
+            let chinese = ["我","你"];
+            if (randomlimit(0,1) == 1) {
+                chinese.push("他","她","它");
+            }else{
+                if (randomlimit(0,1) == 1) {
+                    chinese.push("他，她","它");
+                }else{
+                    chinese.push("他，她，它");
+                } 
+            }
+            chinese.push("天","地","水","火","岩石","树","草","果实","风","云","太阳","月亮","星星","语名")
+
+            // 单词
+            let words = [];
+            let theword = ""
+            while (words.length < chinese.length) {
+                times ++;
+                theword = makeaWord(randomlimit(1,4));
+                if (theword.length <= randomlimit(3,4) && words.indexOf(theword) === -1) {
+                words.push(theword);
+                }
+            }
+            words = bubbleSortLong(words);
+            let allword= [];
+            for (let i = 0; i < words.length; i++) {
+                times ++;
+                allword.push(chinese[i] + "：  " + words[i])
+            }
+            allword = bubbleSortLists(words,allword);
+
+
+            // ——————————————————
+
+            // 输出
+            const long = vowel1.length + pinyin1.length + complement1.length + consonant1.length + chinese.length + times;
+            let output = "";
+            output += "<div>输出：</div><ul>";
+            output += "<li>字母表(" + letter2.length + ")：  " + letter2 +  "</li>";
+            output += "<span style='padding: 60px;''></span>";
+            output += "<li>构字法：  " + word +  "</li><ul>";
+            output += "<li>" + vowel[0] + "：    " + vowel + "</li>";
+            output += "<li>" + pinyin[0] + "：   " + pinyin + "</li>";
+            if (consonant.length != 0) {
+                output += "<li>" + consonant[0] + "：    " + consonant + "</li>";
+            }
+            if (complement.length != 0) {
+                output += "<li>" + complement[0] + "：   " + complement +  "</li>";
+            }
+            output += "</ul>";
+            output += "<span style='padding: 60px;''></span>";
+            output += "<li>基本词汇(" + words.length + ")：  </li><ul>";
+                for (let i = 0; i < words.length; i++) {
+                    output += "<li>" + allword[i] +  "</li>";
+                }
+            output += "</ul>";
+            output += "</ul>";
+            // output += "<hr noshade>";
+            output += "<span style='padding: 60px;''></span>";
+            output += "<div>日志：</div><ul>";
+            output += "<li>运行代：  " + times + "</li>";
+            output += "<span style='padding: 60px;''></span>";
+            output += "<li>学习量：  " + long + "</li>";
+            output += "<span style='padding: 60px;''></span>";
+            output += "<li>根语言：  英语</li>";
+            output += "<span style='padding: 60px;''></span>";
+            output += "<li>版本号：  " + order + "</li>";
+            output += "<span style='padding: 60px;''></span>";
+            // output += "<li class='tp'>IP地址：  " + IP() + "</li>";
+            // output += "<br/>";
+            output += "<li>" + nowTime() +  "</li><ul>";
+
+            return output;
+
+        }
+        
+        let abb = "";
+
+        function change() {
+            document.getElementById("get").innerHTML = "<p>获取AI运行数据中...</p>";
+            abb = all();
+            let aab = randomlimit(10000,18000);
+            setTimeout(function(){
+                document.getElementById("get").innerHTML = abb;
+            }, aab);
+        }
+
+    </script>
+</body>
+</html>
