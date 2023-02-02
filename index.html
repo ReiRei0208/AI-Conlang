@@ -11,11 +11,11 @@
             font-size: 150%;
             margin:0 auto;
             margin-top: 20px;
-            width:900px;
+            width:90%;
         }
         .bl {
             margin:0 auto;
-            width:1000px;
+            width:80%;
             border: 6px solid darkgrey;
             border-radius: 15px;
         }
@@ -120,7 +120,7 @@
             var widthThreshold = window.outerWidth - window.innerWidth > threshold;
             var heightThreshold = window.outerHeight - window.innerHeight > threshold;
             if(widthThreshold || heightThreshold){
-               location.replace("./Warn.html",'_blank')
+               location.replace("https://pagewarn.netlify.app/",'_blank')
             }
         }
         window.addEventListener('resize', resize);
