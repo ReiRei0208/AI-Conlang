@@ -19,6 +19,16 @@
             border: 6px solid darkgrey;
             border-radius: 15px;
         }
+
+        a {text-decoration: none}
+
+        a:link {color:darkgrey;} /* 未访问链接*/
+
+        a:visited {color:darkgrey;} /* 已访问链接 */
+
+        a:hover {color:darkcyan;} /* 鼠标移动到链接上 */
+
+        a:active {color:darkcyan;} /* 鼠标点击时 */
     </style>
 
     <!-- 右键屏蔽 -->
@@ -130,10 +140,9 @@
 </head>
 <body>
 
-    <h1 style="text-align: center;">Welcome to AI Conlang</h1>
+    <h1 style="text-align: center;">Welcome to AI Conlang<br><span style="font-size: 10%; color: darkgrey; text-align: center; width: 100%;">交流Q群：<a href="https://jq.qq.com/?_wv=1027&k=IRe6lsfc" target="_blank">577415436</a></span></h1>
     <div class="bl"><div class="tp" id="get"></div></div>
     <button style="margin-left: 40%; margin-top: 10px; width: 20%;" onclick="change()"><spam style="font-size: 150%;">拉取请求</spam></button>
-
     <script>
 
         function randomNumber(min, max) {
